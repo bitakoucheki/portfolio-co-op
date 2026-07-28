@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ePortfolio — Section 1 | Bita Khodadad Kouchaki</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #04060b;
+    color: #e2e8f0;
+    font-family: 'Sora', sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 28px 80px;
+  }
+
+  /* ── header ── */
+  .site-header {
+    border-bottom: 1px solid rgba(45,212,191,0.18);
+    padding-bottom: 36px;
+    margin-bottom: 56px;
+  }
+  .monolabel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: #5eead4;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .monolabel::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: rgba(45,212,191,0.5);
+  }
+  .site-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    line-height: 1.08;
+  }
+  .site-header h1 span {
+    background: linear-gradient(90deg, #5eead4, #22d3ee, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .site-header .sub {
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── section ── */
+  .section {
+    margin-bottom: 60px;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #5eead4;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(45,212,191,0.15);
+  }
+  .section h2 {
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  /* ── card ── */
+  .card {
+    background: rgba(10,14,22,0.92);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover {
+    border-color: rgba(45,212,191,0.35);
+  }
+
+  /* ── about ── */
+  .about-body p {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+  .about-body p:last-child { margin-bottom: 0; }
+
+  .highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .highlight-chip {
+    background: rgba(10,14,22,0.92);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .highlight-chip .val {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #5eead4;
+  }
+  .highlight-chip .lbl {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #94a3b8;
+    margin-top: 4px;
+  }
+
+  /* ── experience timeline ── */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    border-left: 1px solid rgba(45,212,191,0.2);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #94a3b8;
+    border: 3px solid #04060b;
+    box-shadow: 0 0 0 1px rgba(45,212,191,0.2);
+  }
+  .timeline-item.current::before {
+    background: #2dd4bf;
+    box-shadow: 0 0 14px rgba(45,212,191,0.65);
+  }
+  .job-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .job-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .job-meta {
+    font-size: 0.88rem;
+    color: #5eead4;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .job-meta span {
+    color: #94a3b8;
+    font-weight: 400;
+  }
+  .period-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: #94a3b8;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 20px;
+    padding: 3px 10px;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+  .job-bullets {
+    list-style: none;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .job-bullets li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.65;
+  }
+  .job-bullets li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2dd4bf;
+    margin-top: 8px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+  }
+  .tag {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(45,212,191,0.07);
+    border: 1px solid rgba(45,212,191,0.2);
+    border-radius: 20px;
+    padding: 3px 10px;
+    color: #99f6e4;
+    font-weight: 500;
+  }
+
+  /* ── education ── */
+  .edu-card .school {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .edu-card .credential {
+    font-size: 0.9rem;
+    color: #5eead4;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+  .edu-card .detail {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin-top: 8px;
+    line-height: 1.65;
+  }
+
+  /* ── resume link ── */
+  .resume-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    background: linear-gradient(90deg, #2dd4bf, #22d3ee);
+    color: #04060b;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 11px 22px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: box-shadow 0.2s;
+  }
+  .resume-cta:hover {
+    box-shadow: 0 0 32px -4px rgba(45,212,191,0.7);
+  }
+
+  /* ── divider ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(45,212,191,0.2), transparent);
+    margin: 48px 0;
+  }
+
+  /* ── portfolio link banner ── */
+  .portfolio-banner {
+    background: rgba(45,212,191,0.06);
+    border: 1px solid rgba(45,212,191,0.25);
+    border-radius: 14px;
+    padding: 22px 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .portfolio-banner p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-top: 4px;
+  }
+  .portfolio-banner strong {
+    font-size: 1rem;
+    color: #e2e8f0;
+    font-weight: 600;
+  }
+  .portfolio-banner a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: #5eead4;
+    background: rgba(45,212,191,0.1);
+    border: 1px solid rgba(45,212,191,0.35);
+    border-radius: 8px;
+    padding: 8px 16px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .portfolio-banner a:hover { background: rgba(45,212,191,0.18); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="monolabel">LE/COOP 2100 · ePortfolio · Section 1</div>
+    <h1>Bita <span>Khodadad Kouchaki</span></h1>
+    <div class="sub">Computer Science · York University · Co-op 2026</div>
+  </header>
+
+  <!-- PORTFOLIO BANNER -->
+  <div class="portfolio-banner">
+    <div>
+      <strong>Live Portfolio Site</strong>
+      <p>Full recruiter-facing portfolio with projects, experience, and contact.</p>
+    </div>
+    <a href="https://bita-kouchaki.vercel.app" target="_blank" rel="noreferrer">bita-kouchaki.vercel.app ↗</a>
+  </div>
+
+  <!-- ABOUT ME -->
+  <div class="section">
+    <div class="section-label">01 · About Me</div>
+    <h2>Who I am.</h2>
+    <div class="about-body">
+      <p>I'm a Computer Science student at York University with a focus that has steadily sharpened toward one thing: building dependable systems out of data. What started as coursework in databases and algorithms has become hands-on work with production-grade enterprise data platforms.</p>
+      <p>Right now I'm on a data engineering co-op placement at Meridian Credit Union, working with the Enterprise Analytics & Data team. My day-to-day involves Microsoft Fabric, SQL, and data pipeline work — helping structure and govern data that drives analytics across the organization. Being placed on a project close to going into production, and collaborating with teams across business banking, wealth, and marketing, has given me a practical view of how data actually moves through an organization.</p>
+      <p>Before this, I spent time in AI quality and evaluation — training, prompting, and stress-testing large language models and agent workflows. That work taught me to think adversarially: find edge cases, surface failure modes, and care deeply about correctness. I carry that same rigor into data.</p>
+      <p>Outside of technical work, I have a classical music background and a long-running interest in music production. I built Motif, a browser-based generative music engine, as a way to treat composition like code. That blend of analytical thinking and creative instinct is something I bring to most things I do.</p>
+    </div>
+
+    <!-- HIGHLIGHTS -->
+    <div class="highlights">
+      <div class="highlight-chip"><div class="val">York University</div><div class="lbl">BSc Computer Science</div></div>
+      <div class="highlight-chip"><div class="val">2027</div><div class="lbl">Graduating</div></div>
+      <div class="highlight-chip"><div class="val">Data & AI</div><div class="lbl">Current focus</div></div>
+      <div class="highlight-chip"><div class="val">Py · SQL · JS · Java</div><div class="lbl">Languages</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-label">02 · Career — Experience</div>
+    <h2>Where I've worked.</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item current card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Data Engineering Co-op (Intern)</div>
+            <div class="job-meta">Meridian Credit Union <span>· Enterprise Analytics & Data</span></div>
+          </div>
+          <span class="period-badge">May 2026 — Present</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Contribute to enterprise data platform development — working across data architecture, ingestion pipelines, and transformation workflows alongside the team.</li>
+          <li>Work with Microsoft Fabric and SQL to structure, govern, and surface data for analytics across the organization.</li>
+          <li>Placed on a project close to production, collaborating with business banking, wealth, and marketing teams on cross-functional data needs.</li>
+          <li>Present work at team showcases and to directors and a Vice President, building communication and stakeholder skills alongside technical ones.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Microsoft Fabric</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Data Pipelines</span>
+          <span class="tag">Data Governance</span>
+        </div>
+      </div>
+
+      <div class="timeline-item card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">AI QA Analyst & Task Designer</div>
+            <div class="job-meta">Fleet AI, Inc. <span>· Remote</span></div>
+          </div>
+          <span class="period-badge">Feb 2026 — Present</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Evaluate and validate AI agent workflows across enterprise environments — assessing task accuracy, execution consistency, and reliability.</li>
+          <li>Review verifier logic and evaluation criteria to surface model capability gaps and meaningful failure modes.</li>
+          <li>Design structured tasks and evaluation scenarios that train and benchmark AI agents, focused on edge-case coverage.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Agentic Workflows</span>
+          <span class="tag">QA Engineering</span>
+          <span class="tag">Task Design</span>
+        </div>
+      </div>
+
+      <div class="timeline-item card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">LLM Code Evaluation Analyst</div>
+            <div class="job-meta">Outlier (Braintrust) <span>· Remote</span></div>
+          </div>
+          <span class="period-badge">Nov 2024 — Dec 2025</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Contributed to training and optimizing large language models on code generation tasks across Python, Java, and C.</li>
+          <li>Evaluated model-generated code for correctness, efficiency, and instruction adherence; authored corrected solutions to feed back into training.</li>
+          <li>Designed high-impact prompts that surfaced model weaknesses, contributing to a measured 15% improvement in response accuracy during evaluations.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">Code Review</span>
+        </div>
+      </div>
+
+      <div class="timeline-item card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">IT Support Analyst — Internship</div>
+            <div class="job-meta">York Region <span>· Newmarket, Ontario</span></div>
+          </div>
+          <span class="period-badge">May 2024 — Aug 2024</span>
+        </div>
+        <ul class="job-bullets">
+          <li>Provided IT support across the organization, resolving hardware, software, and system issues through a ticketing system.</li>
+          <li>Documented recurring issues and solutions to streamline support workflows and reduce resolution time.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Technical Support</span>
+          <span class="tag">Documentation</span>
+          <span class="tag">Troubleshooting</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-label">03 · Career — Education</div>
+    <h2>Academic background.</h2>
+
+    <div class="card edu-card">
+      <div class="school">York University — Lassonde School of Engineering</div>
+      <div class="credential">BSc (Specialized Honours), Computer Science</div>
+      <div class="detail">Expected graduation: 2027 · Dean's Honour Roll<br>
+      Relevant coursework: Data Structures & Algorithms, Databases, Applied Machine Learning, Artificial Intelligence, Operating Systems, Probability & Statistics, Theory of Computation.</div>
+    </div>
+
+    <div class="card edu-card">
+      <div class="school">Sampad — National Organization for Development of Exceptional Talents</div>
+      <div class="credential">Diploma, Mathematics & Physics</div>
+      <div class="detail">Graduated 2022 · GPA 19.20 / 20 · Kerman, Iran</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RESUME -->
+  <div class="section">
+    <div class="section-label">04 · Resume</div>
+    <h2>Download my resume.</h2>
+    <p style="color:#94a3b8; font-size:0.95rem; margin-bottom:4px;">My full resume is available as a PDF — or view everything in detail on my live portfolio site.</p>
+    <a class="resume-cta" href="/Bita_Khodadad_Kouchaki_Resume.pdf" download>
+      ↓ Download Resume (PDF)
+    </a>
+  </div>
+
+</div>
+</body>
+</html>
